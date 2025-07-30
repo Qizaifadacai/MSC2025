@@ -1,50 +1,95 @@
 # Live/Dead Cell Analysis Tool
 
-## 功能描述
-这是一个用于分析荧光显微镜下活/死细胞图像的自动化工具。主要功能包括：
+## Description
+An automated fluorescence microscopy image analysis tool for live/dead cell quantification. This tool processes dual-channel fluorescence images and provides comprehensive cell counting with advanced visualization.
 
-1. **双通道图像处理**
-   - 绿色通道 (GFP): 识别活细胞
-   - 蓝色通道 (DAPI): 识别死细胞
-   - 支持16位 TIFF 格式图像
+## Features
 
-2. **自动细胞计数**
-   - 使用改进的分水岭算法分离重叠细胞
-   - 智能阈值处理，适应不同亮度条件
-   - 基于形态学和面积的细胞筛选
+### 1. Image Processing
+- Processes dual-channel fluorescence microscopy images
+  - Green channel: Live cells
+  - RED channel: Dead cells
+- Supports TIFF formats
+- Advanced background correction
+- Automatic intensity balancing
 
-3. **结果可视化**
-   - 生成带比例尺的合成图像
-   - 细胞边界标注
-   - 统计数据可视化（饼图等）
-   - 导出详细的分析报告
+### 2. Cell Detection & Analysis
+- Watershed-based cell segmentation
+- Intelligent threshold detection
+- Morphological filtering
+- Size-based cell filtering
+- Overlapping cell separation
+- Automated cell counting
 
-4. **批量处理**
-   - 支持多文件夹批处理
-   - 自动生成汇总报告
-   - CSV格式导出统计结果
+### 3. Visualization
+- Multi-channel composite images
+- Scale bar addition
+- Cell boundary marking
+- Analysis overlays
+- Statistical visualization
+- Color-coded segmentation maps
 
-## 使用方法
-1. 安装依赖：
+### 4. Output Generation
+- Combined channel images
+- Individual channel images
+- Cell analysis images
+- Statistical reports
+- CSV summaries
+- Visual analysis plots
+
+## Installation
+
 ```bash
+# Install required packages
 pip install numpy pillow opencv-python scipy scikit-image matplotlib
 ```
 
-2. 运行脚本：
+## Usage
+
+1. Prepare your image files:
+   - Place images in folders with 'Default' subdirectories
+   - Supported formats: CZI, TIFF
+
+2. Run the script:
 ```python
 python LiveDead_Cell_counting.py
 ```
 
-## 输出结果
-- 合成的RGB图像
-- 细胞分析图（带标注）
-- 统计报告（CSV和TXT格式）
-- 分析结果可视化图表
+3. Output files:
+   - Combined channel images
+   - Analysis images with cell detection
+   - Statistical reports
+   - Summary tables
 
-## 依赖库
+## Dependencies
 - numpy
 - PIL (Pillow)
 - opencv-python
 - scipy
 - scikit-image
 - matplotlib
+
+## Parameters
+- `intensity_balance`: Control channel intensities
+- `brightness_factor`: Adjust overall brightness
+- `baseline_percentile`: Background correction
+- `min_cell_size`: Minimum cell area
+- `max_cell_size`: Maximum cell area
+
+## Output Files
+1. Images:
+   - `*_combined.tif`: Merged channels
+   - `*_cell_analysis.tif`: Detection results
+   - `*_watershed_segmentation.tif`: Cell separation
+   - `*_color_masks.tif`: Detection masks
+
+2. Reports:
+   - `cell_count_summary.csv`: Numerical results
+   - `advanced_cell_results_*.txt`: Detailed analysis
+   - `advanced_analysis_*.png`: Visual summary
+
+## Notes
+- Optimized for fluorescence microscopy images
+- Supports batch processing
+- Includes automatic scale bar generation
+- Provides statistical analysis
